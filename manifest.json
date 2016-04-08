@@ -1,0 +1,21 @@
+{  
+  "name": "DoubanMovieRes",  
+  "version": "0.1.0",  
+  "manifest_version": 2,
+  "description": "Get the douban movie resource 4 download",  
+  "background": { "scripts": ["background.js"] },
+  "content_scripts": [
+    {
+      "matches": ["https://movie.douban.com/*"],
+      "css": ["common.css"],
+      "js": ["jquery.min.js"]
+    }
+  ],
+   "page_action": {
+        "default_icon": {
+            "19": "movie_19.png",
+            "38": "movie_38.png"
+        },
+    "default_title": "douban movie resource 4 download"
+    }
+} 
