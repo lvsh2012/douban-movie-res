@@ -10,9 +10,10 @@
 }
 
 function checkForValidUrl(tabId, changeInfo, tab) {
-	if(getDomainFromUrl(tab.url).toLowerCase()=="movie.douban.com"){
+    var curDomain = getDomainFromUrl(tab.url).toLowerCase();
+	if(curDomain.indexOf('douban.com') != -1){
 		chrome.pageAction.show(tabId);
 	}
 };
-
+  
 chrome.tabs.onUpdated.addListener(checkForValidUrl);

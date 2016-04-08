@@ -18,5 +18,8 @@
             "38": "movie_38.png"
         },
         "default_title":"专注于豆瓣"
+    },
+    "background": {  
+       "page": "background.html"  
     }
 } 

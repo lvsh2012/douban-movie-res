@@ -1,19 +1,17 @@
 var conf = {
-    movie:{
-        res:'http://movie.muwei3.com/douban/res/fetch',
-        opt:'http://movie.muwei3.com/douban/res/opt'
-    }
+    movie_res:'http://movie.muwei3.com/douban/res/fetch',
+    movie_opt:'http://movie.muwei3.com/douban/res/opt'
 }
 
 function urlcheck(){
     var url = window.location.href;
-    var reg = /movie\.douban\.com\/subject/\d+$/; 
-    if(reg.test(obj)){   
+    var reg = /movie\.douban\.com\/subject\/\d+/;
+    if(reg.test(url)){
          res();
     }
 }
 function init(){
-
+    urlcheck();
 }
 
 function res(){
@@ -24,13 +22,13 @@ function res(){
                        <div class='muwei3-movie-download'></div>\
                        </div>";
     $(".aside").prepend(movieResHtml);
-    $.post(conf.res,function(json){
+    $.post(conf.movie_res,function(json){
         
     },'json');
 }
 
 function opt(){
-    $.post(conf.opt,function(json){
+    $.post(conf.movie_opt,function(json){
         
     },'json');
 }
