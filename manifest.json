@@ -1,14 +1,15 @@
 {  
-  "name": "DoubanMovieRes",  
-  "version": "0.1.0",  
+  "name": "木卫三 - 豆瓣",  
+  "version": "1.1.1",  
   "manifest_version": 2,
-  "description": "Get the douban movie resource 4 download",  
+  "description": "专注于豆瓣",  
   "background": { "scripts": ["background.js"] },
+  "permissions": ["tabs"],
   "content_scripts": [
     {
-      "matches": ["https://movie.douban.com/*"],
+      "matches": ["https://*.douban.com/*","http://*.douban.com/*"],
       "css": ["common.css"],
-      "js": ["jquery.min.js"]
+      "js": ["jquery.min.js","content_scripts.js"]
     }
   ],
    "page_action": {
@@ -16,6 +17,6 @@
             "19": "movie_19.png",
             "38": "movie_38.png"
         },
-    "default_title": "douban movie resource 4 download"
+        "default_title":"专注于豆瓣"
     }
 } 
