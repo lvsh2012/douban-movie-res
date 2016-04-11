@@ -9,9 +9,14 @@
     {
       "matches": ["https://*.douban.com/*","http://*.douban.com/*"],
       "css": ["common.css"],
-      "js": ["jquery.min.js","content_scripts.js"]
+      "js": ["jquery.min.js","gm_jq_xhr.js","sdk.js","content_scripts.js"]
     }
   ],
+	"icons": {
+		"16": "icon16.png",
+		"48": "icon48.png",
+		"128": "icon128.png"
+	},
    "page_action": {
         "default_icon": {
             "19": "movie_19.png",
