@@ -1,0 +1,39 @@
+.muwei3-movie-res{
+	margin: 10px 0px 10px 0px;
+    background: #F4F4EC;
+    padding: 8px;
+}
+
+.muwei3-movie-res .hide{
+	display:none;
+}
+.online-title{
+	color: green;
+    background-color: initial;
+}
+.muwei3-movie-res h3{
+    color: green;
+    background-color: initial;
+}
+
+.muwei3-movie-online div{
+    display: block;
+    margin: 5px;
+}
+    
+.muwei3-movie-download div{
+    display: block;
+    margin: 5px;
+}
+
+.muwei3-right{
+    text-align: right;
+    margin: 5px 0px 0px 0px;
+    font-size: 10px;
+    color: gray;
+    background-color: initial;
+}
+..muwei3-right a{
+	color: gray;
+	background-color: initial;
+}
