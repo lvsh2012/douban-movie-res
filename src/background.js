@@ -11,7 +11,7 @@
 
 function checkForValidUrl(tabId, changeInfo, tab) {
     var curDomain = getDomainFromUrl(tab.url).toLowerCase();
-	if(curDomain.indexOf('douban.com') != -1){
+	if(curDomain.indexOf('douban.') != -1){
 		chrome.pageAction.show(tabId);
 	}
 };

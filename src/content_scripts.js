@@ -5,11 +5,14 @@ var conf = {
 
 function urlcheck(){
     var url = window.location.href;
-    var reg = /movie\.douban\.com\/subject\/\d+/;
-    if(reg.test(url)){
+    var regMovieDetails = /movie\.douban\.com\/subject\/\d+/;
+    var regFm = /douban\.fm\/mine\/\#\!type\=liked/;
+    if(regMovieDetails.test(url)){
         var result = url.match(/subject\/\d+/);
         var movieid = result[0].replace("subject/", "");
         res(movieid);
+    }else if(regFm.test(url)){
+	   doubanFM();
     }
 }
 function init(){
@@ -67,5 +70,67 @@ function opt(){
     },'json');
 }
 
+function doubanFM(){
+	$("#navigation").append('<li style="background: rgb(255, 255, 255);"><a href="javascript:" id="export-liked" style="color: red;">导出红心</a></li>');
+}
+
+function get_cookie(name){
+	var arr,reg = new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+	if(arr = document.cookie.match(reg)){
+		return unescape(arr[2]);
+	}
+	else{
+		return null;
+	}
+	
+}
+
 init();
+
+$(function(){
+    
+
+	// 导出豆瓣红心
+	$(document).on('click','#export-liked',function(){
+        var start = 0;
+        var text  = "<so>";
+        var total = 0;
+        var per = 0;
+        var ck  = get_cookie("ck");
+        var spbid = encodeURIComponent("::"+get_cookie("bid"));
+        window.$("#export-liked").html("玩命导出中...");
+        $.ajax({
+        	type: "get",
+		    url: "https://douban.fm/j/play_record?ck="+ck+"&spbid="+spbid+"&type=liked&start=0",
+		    cache:false,
+		    async:false,
+		    dataType:"json",
+		    success: function(json){
+        		total = json.total;
+        		per   = json.per_page;
+		    } 
+		});
+
+        for(start = 0; start < total; start+=per){
+        	$.ajax({
+	        	type: "get",
+			    url: "https://douban.fm/j/play_record?ck="+ck+"&spbid="+spbid+"&type=liked&start="+start,
+			    cache:false,
+			    async:false,
+			    dataType:"json",
+			    success: function(json){
+			    	$.each(json.songs,function(k,v){
+						text += '<so  name="'+v.title+'" artist="'+v.artist+'"  album="'+v.subject_title+'"></so>';
+			    	})
+	        		
+			    } 
+			});
+
+        }
+        text += "<so>";
+        var blob = new Blob([text], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "豆瓣红心歌单.kwl");
+		window.$("#export-liked").html("导出红心");
+    })
+})
 
